@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#126b3b">
+<title>مزارع</title>
+<style>
+:root{--g:#126b3b;--g2:#1e9455;--bg:#f7f4ea;--w:#fff;--ink:#1e2721;--mut:#6f776f;--line:#dce6de}
+*{box-sizing:border-box}body{margin:0;background:#e9f0eb;font-family:Tahoma,Arial,sans-serif;color:var(--ink)}
+#app{max-width:460px;min-height:100vh;margin:auto;background:var(--bg);position:relative}
+.top{height:64px;background:linear-gradient(135deg,#0c5b31,#177b46);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;position:sticky;top:0;z-index:10}
+.brand{font-size:23px;font-weight:800}.top button{width:40px;height:40px;border:0;border-radius:13px;background:#ffffff22;color:#fff;font-size:20px}
+.page{padding:18px 15px 90px}.hero,.card,.voice{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 8px 25px #0d4d2914}
+.hero{padding:20px;text-align:center}.avatar{width:92px;height:92px;border-radius:50%;background:#e9f5ed;margin:auto;display:flex;align-items:center;justify-content:center;font-size:50px;border:4px solid white;box-shadow:0 7px 18px #0002}
+h1{font-size:30px;margin:12px 0 4px;color:var(--g)}p{line-height:1.75}.mut{color:var(--mut);font-size:14px}
+.btn{width:100%;height:54px;border:0;border-radius:16px;font-size:17px;font-weight:800;font-family:inherit;margin-top:10px}
+.primary{background:linear-gradient(135deg,var(--g2),var(--g));color:#fff}.secondary{background:#fff;color:var(--g);border:1.5px solid #a9cfb5}
+.role{display:flex;gap:13px;align-items:center;background:#fff;border:1px solid var(--line);padding:16px;border-radius:20px;margin:11px 0;box-shadow:0 5px 15px #0000000b}
+.role .ico{width:58px;height:58px;border-radius:17px;background:#edf7f0;display:flex;align-items:center;justify-content:center;font-size:30px}
+.role b{font-size:19px}.role small{display:block;color:var(--mut);margin-top:4px}
+.agent{display:flex;gap:10px;align-items:flex-start;margin-bottom:16px}.face{min-width:53px;height:53px;border-radius:17px;background:#e8f4ec;display:flex;align-items:center;justify-content:center;font-size:29px}
+.bubble{background:#fff;border:1px solid var(--line);border-radius:20px 20px 7px 20px;padding:14px;line-height:1.7;flex:1}
+.voice{padding:18px;text-align:center}.mic{width:88px;height:88px;border-radius:50%;border:7px solid #e1f1e7;background:linear-gradient(145deg,#2baa65,#0d6b3a);color:#fff;font-size:36px}.mic.listen{background:#bc4034}
+.status{font-size:12px;color:var(--mut);min-height:18px;margin-top:7px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.chip{border:1px solid #c9d9cd;background:#fff;border-radius:99px;padding:10px 13px;font-family:inherit}.chip.on{background:var(--g);color:#fff;border-color:var(--g)}
+.field{margin:12px 0}.field label{display:block;font-size:13px;font-weight:800;color:var(--mut);margin-bottom:7px}select,input{width:100%;height:52px;border:1px solid #c8d5cb;border-radius:15px;background:#fff;padding:0 12px;font:inherit}
+.progress{height:6px;background:#dfe8e1;border-radius:20px;overflow:hidden;margin-bottom:16px}.progress div{height:100%;background:var(--g2)}
+.driller{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;margin:11px 0}.drtop{display:flex;gap:10px}.rig{width:78px;height:70px;border-radius:14px;background:#edf3e8;display:flex;align-items:center;justify-content:center;font-size:36px}.driller h3{margin:3px 0}.meta{font-size:13px;color:var(--mut);line-height:1.7}.ok{color:#0b8a46;font-weight:800}.acts{display:flex;gap:8px;margin-top:11px}.acts a,.acts button{flex:1;text-align:center;text-decoration:none;border:0;border-radius:12px;padding:11px 5px;font-weight:800;font-family:inherit}.call{background:#1768d1;color:#fff}.wa{background:#1fa75a;color:#fff}.det{background:#eef2ef;color:#35513c}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:460px;width:100%;height:70px;background:#fff;border-top:1px solid var(--line);display:flex}.nav button{flex:1;border:0;background:transparent;color:#727a73;font-size:11px}.nav span{display:block;font-size:21px}.nav .sel{color:var(--g);font-weight:800}
+.toggle{display:flex;background:#edf1ee;padding:4px;border-radius:14px;gap:4px}.toggle button{flex:1;border:0;border-radius:11px;padding:12px;background:transparent;font-weight:800}.toggle .on{background:#fff;color:var(--g);box-shadow:0 2px 8px #0001}
+.note{background:#eef8f1;border:1px solid #cce3d3;border-radius:16px;padding:14px;line-height:1.7;margin:12px 0}
+</style>
+</head><body><div id="app"></div>
+<script>
+const A=document.getElementById('app');
+let S=JSON.parse(localStorage.getItem('mazare_web_demo')||'{}');S.p=S.p||{};
+const G={"صنعاء":["بني حشيش","بني مطر","سنحان","همدان"],"ذمار":["جهران","عنس","الحداء","ضوران آنس"],"عمران":["خمر","ريدة","حوث","عيال سريح"],"إب":["يريم","العدين","السدة","جبلة"],"تعز":["الحوبان","الشمايتين","المواسط","صبر الموادم"]};
+const D=[["أبو محمد للحفر","ذمار","جهران","دقاق","500","770123456"],["مؤسسة الخير للحفر","ذمار","جهران","روتاري","700","771654321"],["أبو عبدالله للحفر","صنعاء","بني حشيش","روتاري","600","733555222"]];
+function save(){localStorage.setItem('mazare_web_demo',JSON.stringify(S))}
+function say(t){try{speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang="ar-SA";u.rate=.92;speechSynthesis.speak(u)}catch(e){}}
+function top(t="مزارع"){return '<div class="top"><button onclick="home()">⌂</button><div class="brand">🌱 '+t+'</div><button onclick="alert(\'نسخة تجريبية تفاعلية\')">ⓘ</button></div>'}
+function nav(sel){return '<div class="nav"><button class="'+(sel==="h"?"sel":"")+'" onclick="home()"><span>⌂</span>الرئيسية</button><button class="'+(sel==="s"?"sel":"")+'" onclick="search()"><span>⌕</span>بحث</button><button onclick="voiceQuick()"><span>🎙️</span>تحدث</button><button onclick="account()"><span>☻</span>حسابي</button></div>'}
+function start(){A.innerHTML='<div class="page" style="padding-top:40px"><div class="hero"><div class="avatar">👨🏽‍🌾</div><h1>مزارع</h1><p class="mut">صديقك للوصول إلى الحفار المناسب بسرعة وبأقل خطوات.</p><div style="height:145px;border-radius:22px;background:linear-gradient(#cce6f2,#dce8c6);display:flex;align-items:flex-end;justify-content:space-around;padding:14px;font-size:58px;margin:18px 0">🌾 <span style="font-size:76px">🏗️</span> 🌱</div><button class="btn primary" onclick="role()">ابدأ الآن</button></div></div>'}
+function role(){A.innerHTML=top()+'<div class="page"><div class="agent"><div class="face">👨🏽‍🌾</div><div class="bubble"><b>حياك الله.</b><br>هل أنت مزارع أم صاحب حفار؟</div></div><div class="role" onclick="pick(\'farmer\')"><div class="ico">🌾</div><div><b>أنا مزارع</b><small>أبحث عن حفار قريب ومتاح</small></div></div><div class="role" onclick="pick(\'driller\')"><div class="ico">🏗️</div><div><b>لدي حفار</b><small>أعرض خدماتي للمزارعين</small></div></div><button class="btn secondary" onclick="voiceRole()">🎙️ أجب بالصوت</button></div>';say("حياك الله. هل أنت مزارع أم صاحب حفار؟")}
+function pick(r){S.role=r;S.p={};save();step(0)}
+const F=[["gov","في أي محافظة أنت؟","gov"],["dist","وفي أي مديرية؟","dist"],["village","ما اسم القرية أو المنطقة؟","text"],["phone","أدخل رقم هاتف للتواصل.","phone"]];
+const R=[["gov","أين يوجد حفارك الآن؟","gov"],["dist","وفي أي مديرية؟","dist"],["travel","إلى أين تستطيع نقل الحفار؟","travel"],["rig","ما نوع حفارك؟","rig"],["depth","ما أقصى عمق يصل إليه تقريبًا؟","depth"],["available","هل الحفار متاح الآن؟","available"],["phone","أدخل رقم هاتف للتواصل.","phone"]];
+function arr(){return S.role==="driller"?R:F}
+function chips(list,k,i){return '<div class="chips">'+list.map(v=>'<button class="chip" onclick="setv(\''+k+'\',\''+v+'\','+i+')">'+v+'</button>').join('')+'</div>'}
+function step(i){let a=arr();if(i>=a.length){S.p.done=1;save();done();return}let x=a[i],b="";
+if(x[2]==="gov")b=chips(Object.keys(G),x[0],i);
+if(x[2]==="dist")b=chips(G[S.p.gov]||[],x[0],i);
+if(x[2]==="travel")b=chips(["داخل المديرية","داخل المحافظة","محافظات أخرى"],x[0],i);
+if(x[2]==="rig")b=chips(["دقاق","روتاري","يدوي","نوع آخر"],x[0],i);
+if(x[2]==="depth")b=chips(["300 م","400 م","500 م","600 م","أكثر"],x[0],i);
+if(x[2]==="available")b=chips(["متاح الآن","مشغول"],x[0],i);
+if(x[2]==="text"||x[2]==="phone")b='<div class="field"><label>إدخال يدوي</label><input id="val" '+(x[2]==="phone"?'type="tel"':'')+' placeholder="اكتب هنا"></div><button class="btn primary" onclick="manual(\''+x[0]+'\','+i+')">متابعة</button>';
+A.innerHTML=top("إنشاء الحساب")+'<div class="page"><div class="progress"><div style="width:'+(i/a.length*100)+'%"></div></div><div class="agent"><div class="face">👨🏽‍🌾</div><div class="bubble">'+x[1]+'</div></div>'+b+'<div class="voice"><button id="mic" class="mic" onclick="voiceStep('+i+')">🎙️</button><div id="status" class="status">اضغط وتحدث أو استخدم الاختيار اليدوي</div></div></div>';say(x[1])}
+function setv(k,v,i){S.p[k]=v;save();step(i+1)}
+function manual(k,i){let v=document.getElementById("val").value.trim();if(!v)return alert("أدخل البيانات");S.p[k]=v;save();step(i+1)}
+function norm(s){return (s||"").replace(/[ًٌٍَُِّْـ]/g,"").replace(/[أإآ]/g,"ا").replace(/ة/g,"ه").replace(/ى/g,"ي")}
+function best(t,l){let n=norm(t);return l.find(v=>n.includes(norm(v))||norm(v).includes(n))}
+function listen(cb){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){alert("التعرف الصوتي غير مدعوم في هذا المتصفح. استخدم الإدخال اليدوي.");return}let r=new SR();r.lang="ar-SA";let m=document.getElementById("mic");if(m)m.classList.add("listen");r.onresult=e=>cb(e.results[0][0].transcript);r.onerror=()=>alert("تعذر التقاط الصوت");r.onend=()=>{if(m)m.classList.remove("listen")};r.start()}
+function voiceRole(){listen(t=>{if(t.includes("حفار"))pick("driller");else pick("farmer")})}
+function voiceStep(i){let x=arr()[i],l=null;if(x[2]==="gov")l=Object.keys(G);if(x[2]==="dist")l=G[S.p.gov]||[];if(x[2]==="travel")l=["داخل المديرية","داخل المحافظة","محافظات أخرى"];if(x[2]==="rig")l=["دقاق","روتاري","يدوي","نوع آخر"];if(x[2]==="available")l=["متاح الآن","مشغول"];listen(t=>{let v=l?best(t,l):t;if(!v)return alert("لم أجد تطابقًا واضحًا");S.p[x[0]]=v;save();if(confirm("فهمت: "+v+"\nهل هذا صحيح؟"))step(i+1);else step(i)})}
+function done(){A.innerHTML=top()+'<div class="page"><div class="hero"><div class="avatar">👍🏽</div><h2>تم إنشاء حسابك بنجاح</h2><p class="mut">'+(S.role==="farmer"?"يمكنك الآن البحث عن الحفارات المتاحة بالقرب منك.":"أصبح ملف حفارك جاهزًا للظهور للمزارعين.")+'</p><button class="btn primary" onclick="home()">الذهاب للرئيسية</button></div></div>';say("تم إنشاء حسابك بنجاح")}
+function home(){if(!S.p.done){start();return}S.role==="driller"?drhome():farhome()}
+function farhome(){A.innerHTML=top()+'<div class="page"><div class="agent"><div class="face">👨🏽‍🌾</div><div class="bubble">حياك الله. قل ماذا تحتاج اليوم أو ابحث يدويًا.</div></div><div class="voice"><button id="mic" class="mic" onclick="voiceQuick()">🎙️</button><div class="status">مثال: أريد حفار روتاري في جهران</div></div><button class="btn primary" onclick="search()">🔍 ابحث عن حفار</button><h3>متاحون الآن</h3>'+D.map(card).join("")+'</div>'+nav("h")}
+function drhome(){let av=S.p.available!=="مشغول";A.innerHTML=top()+'<div class="page"><div class="agent"><div class="face">👨🏽‍🌾</div><div class="bubble">حدّث حالة حفارك أو موقعه بسرعة.</div></div><div class="card" style="padding:15px"><b>حالة الحفار</b><div class="toggle" style="margin-top:10px"><button class="'+(av?"on":"")+'" onclick="avail(1)">🟢 متاح</button><button class="'+(!av?"on":"")+'" onclick="avail(0)">🔴 مشغول</button></div></div><div class="note">📍 '+(S.p.gov||"—")+' — '+(S.p.dist||"—")+'<br>🏗️ '+(S.p.rig||"—")+' · '+(S.p.depth||"—")+'</div><div class="voice"><button id="mic" class="mic" onclick="voiceDr()">🎙️</button><div class="status">مثال: أنا الآن في جهران ومتاح</div></div></div>'+nav("h")}
+function avail(v){S.p.available=v?"متاح الآن":"مشغول";save();drhome()}
+function search(){let g=S.p.gov||"ذمار",d=S.p.dist||"جهران";A.innerHTML=top("البحث")+'<div class="page"><div class="field"><label>المحافظة</label><select id="g" onchange="dist()">'+Object.keys(G).map(x=>'<option '+(x===g?"selected":"")+'>'+x+'</option>').join("")+'</select></div><div class="field"><label>المديرية</label><select id="d">'+G[g].map(x=>'<option '+(x===d?"selected":"")+'>'+x+'</option>').join("")+'</select></div><div class="field"><label>نوع الحفار</label><select id="r"><option value="">الكل</option><option>دقاق</option><option>روتاري</option></select></div><button class="btn primary" onclick="results()">عرض الحفارات المتاحة</button><div id="res"></div></div>'+nav("s");results()}
+function dist(){let g=document.getElementById("g").value;document.getElementById("d").innerHTML=G[g].map(x=>'<option>'+x+'</option>').join("")}
+function results(){let g=document.getElementById("g")?.value,d=document.getElementById("d")?.value,r=document.getElementById("r")?.value;let a=D.filter(x=>(!g||x[1]===g)&&(!d||x[2]===d)&&(!r||x[3]===r));document.getElementById("res").innerHTML='<h3>النتائج ('+a.length+')</h3>'+(a.length?a.map(card).join(""):'<div class="note">لا توجد نتائج مطابقة الآن.</div>')}
+function card(x){return '<div class="driller"><div class="drtop"><div class="rig">🏗️</div><div><h3>'+x[0]+'</h3><div class="ok">● متاح الآن</div><div class="meta">'+x[3]+' · حتى '+x[4]+'م<br>📍 '+x[1]+' — '+x[2]+'</div></div></div><div class="acts"><a class="call" href="tel:'+x[5]+'">📞 اتصال</a><a class="wa" href="https://wa.me/967'+x[5]+'">واتساب</a></div></div>'}
+function voiceQuick(){listen(t=>{for(const [g,ds] of Object.entries(G)){if(norm(t).includes(norm(g)))S.p.gov=g;for(const d of ds)if(norm(t).includes(norm(d))){S.p.gov=g;S.p.dist=d}}save();search()})}
+function voiceDr(){listen(t=>{if(t.includes("متاح"))S.p.available="متاح الآن";if(t.includes("مشغول"))S.p.available="مشغول";for(const [g,ds] of Object.entries(G))for(const d of ds)if(norm(t).includes(norm(d))){S.p.gov=g;S.p.dist=d}save();drhome()})}
+function account(){A.innerHTML=top("حسابي")+'<div class="page"><div class="hero"><h2>حسابي</h2><div class="note">'+Object.entries(S.p).filter(x=>x[0]!=="done").map(x=>'<div><b>'+x[0]+'</b>: '+x[1]+'</div>').join("")+'</div><button class="btn secondary" onclick="localStorage.removeItem(\'mazare_web_demo\');location.reload()">إعادة ضبط التجربة</button></div></div>'+nav("")}
+if(S.p.done)home();else start();
+</script></body></html>
